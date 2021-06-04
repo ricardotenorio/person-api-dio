@@ -1,4 +1,4 @@
-package ricardotenorio.github.com.personapi.dto;
+package ricardotenorio.github.com.personapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
