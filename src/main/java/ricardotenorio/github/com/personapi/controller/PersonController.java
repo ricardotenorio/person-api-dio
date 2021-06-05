@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import ricardotenorio.github.com.personapi.dto.request.PersonDTO;
 import ricardotenorio.github.com.personapi.dto.response.MessageResponseDTO;
 import ricardotenorio.github.com.personapi.entity.Person;
+import ricardotenorio.github.com.personapi.exception.PersonNotFoundException;
 import ricardotenorio.github.com.personapi.service.PersonService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -25,5 +27,15 @@ public class PersonController {
   @ResponseStatus(HttpStatus.CREATED)
   public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
     return personService.createPerson(personDTO);
+  }
+
+  @GetMapping
+  public List<PersonDTO> listAll() {
+    return personService.listAll();
+  }
+
+  @GetMapping("/{id}")
+  public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+    return personService.findById(id);
   }
 }
